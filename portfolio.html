@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jhon Rey Narciso - Full Stack Developer & UI/UX Designer Portfolio">
+    <meta name="keywords" content="Full Stack Developer, Web Development, UI/UX Design, React, Node.js">
+    <meta name="author" content="Jhon Rey Narciso">
+    <title>Jhon Rey Narciso - Creative Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+        
+        :root {
+            --primary: #00f5ff;
+            --secondary: #bd00ff;
+            --accent: #ff006e;
+            --bg-dark: #0a0a0f;
+            --bg-card: #121218;
+        }
+        
+        * {
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background: var(--bg-dark);
+            color: white;
+        }
+        
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .font-display { font-family: 'Orbitron', sans-serif; }
+        
+        /* Enhanced Cyber Grid Background */
+        .cyber-grid {
+            background: 
+                linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            position: relative;
+        }
+        
+        .cyber-grid::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 245, 255, 0.1) 0%, transparent 50%);
+            animation: pulseGrid 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulseGrid {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Accessibility: reduce intense motion if user prefers reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-holo, .parallax-1, .parallax-2, .parallax-3, .scan-lines, .grid-overlay, .particles-bg {
+                animation: none !important;
+                transition: none !important;
+            }
+            .cursor-outline, .cursor-dot { display: none; }
+            .cyber-btn.pulse { animation: none; }
+        }
+        
+        /* Advanced Glassmorphism */
+        .glass {
+            background: rgba(18, 18, 24, 0.6);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(0, 245, 255, 0.1);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .glass-hover:hover {
+            background: rgba(18, 18, 24, 0.8);
+            border-color: rgba(0, 245, 255, 0.3);
+            box-shadow: 
+                0 12px 48px rgba(0, 245, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Neon Glow Effects */
+        .neon-text {
+            text-shadow: 
+                0 0 10px rgba(0, 245, 255, 0.8),
+                0 0 20px rgba(0, 245, 255, 0.6),
+                0 0 30px rgba(0, 245, 255, 0.4),
+                0 0 40px rgba(0, 245, 255, 0.2);
+            animation: neonPulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes neonPulse {
+            from { 
+                text-shadow: 
+                    0 0 10px rgba(0, 245, 255, 0.8),
+                    0 0 20px rgba(0, 245, 255, 0.6),
+                    0 0 30px rgba(0, 245, 255, 0.4);
+            }
+            to { 
+                text-shadow: 
+                    0 0 15px rgba(0, 245, 255, 1),
+                    0 0 30px rgba(0, 245, 255, 0.8),
+                    0 0 45px rgba(0, 245, 255, 0.6),
+                    0 0 60px rgba(0, 245, 255, 0.4);
+            }
+        }
+        
+        /* Holographic Card Effect */
+        .holo-card {
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .holo-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 245, 255, 0) 0%,
+                rgba(0, 245, 255, 0.1) 25%,
+                rgba(189, 0, 255, 0.1) 50%,
+                rgba(255, 0, 110, 0.1) 75%,
+                rgba(0, 245, 255, 0) 100%
+            );
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+        
+        .holo-card:hover {
+            transform: rotateY(5deg) rotateX(5deg) scale(1.02);
+        }
+        
+        .holo-card:hover::before {
+            opacity: 1;
+            animation: holoShift 3s linear infinite;
+        }
+        
+        @keyframes holoShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        
+        /* Cyber Button */
+        .cyber-btn {
+            position: relative;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, rgba(0, 245, 255, 0.1), rgba(189, 0, 255, 0.1));
+            border: 2px solid var(--primary);
+            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .cyber-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .cyber-btn:hover {
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .cyber-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+            opacity: 0;
+            transform: scale(0.98);
+            transition: all 0.28s ease;
+            pointer-events: none;
+        }
+
+        .cyber-btn:hover::after {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+
+        /* CTA hump/pulse on idle */
+        .cyber-btn.pulse {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: none; transform: translateY(0); }
+            50% { box-shadow: 0 0 40px rgba(99,102,241,0.25); transform: translateY(-2px); }
+            100% { box-shadow: none; transform: translateY(0); }
+        }
+        
+        .cyber-btn:hover::before {
+            opacity: 0.2;
+        }
+        
+        .cyber-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cyber-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 32px rgba(6,182,212,0.12), 0 0 40px rgba(139,92,246,0.12);
+        }
+        
+        /* Animated Background Particles */
+        .particles-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary);
+            animation: floatParticle 8s infinite linear;
+        }
+        
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-10vh) translateX(50px) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            transform-origin: left;
+            transform: scaleX(0);
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+        
+        /* Custom Cursor */
+        .cursor-dot,
+        .cursor-outline {
+            pointer-events: none;
+            position: fixed;
+            border-radius: 50%;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .cursor-dot.cursor-active {
+            transform: scale(1.6);
+            background: var(--accent);
+            box-shadow: 0 0 12px rgba(6,182,212,0.65);
+        }
+        
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary);
+            opacity: 0.5;
+        }
+        
+        /* Fade Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Timeline */
+        .timeline-line {
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+        }
+        
+        .timeline-dot {
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 20px;
+            box-shadow: 0 0 20px var(--primary);
+            animation: pulseDot 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulseDot {
+            0%, 100% { box-shadow: 0 0 20px var(--primary); }
+            50% { box-shadow: 0 0 30px var(--primary), 0 0 40px var(--primary); }
+        }
+        
+        /* Skill Bar */
+        .skill-bar {
+            position: relative;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            position: relative;
+            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px var(--primary);
+        }
+        
+        .skill-fill::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            animation: skillShimmer 2s infinite;
+        }
+        
+        @keyframes skillShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Loading State */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .cyber-grid {
+                background-size: 30px 30px;
+            }
+            
+            .holo-card:hover {
+                transform: none;
+            }
+            
+            .cursor-dot,
+            .cursor-outline {
+                display: none;
+            }
+            /* reduce heavy hero effects on mobile */
+            .grid-overlay, .scan-lines, .parallax-1, .parallax-2, .parallax-3, .hero-holo, .holo-orb {
+                display: none;
+            }
+            .starfield { opacity: 0.02; }
+            .hero-holo { width: 180px; height: 180px; opacity: 0.3; }
+            .profile-ring { width: 120px; height: 120px; }
+            .vignette { opacity: 0.25; }
+        }
+        
+        /* Enhanced Form Inputs */
+        .cyber-input {
+            background: rgba(0, 245, 255, 0.05);
+            border: 2px solid rgba(0, 245, 255, 0.2);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-input:focus {
+            outline: none;
+            background: rgba(0, 245, 255, 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+        }
+        
+        .cyber-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Project gallery images (legacy) */
+        .project-gallery img {
+            width: 100%;
+            height: 12rem;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            display: block;
+        }
+
+        .project-gallery figcaption {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Ensure new project cards match the existing project-item style */
+        .project-item .media {
+            height: 12rem; /* matches h-64 */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-item .media img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .project-gallery img { height: 10rem; }
+            .project-item .media { height: 10rem; }
+        }
+        
+        /* Project Filter */
+        .filter-btn {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+        }
+        
+        /* Enhanced Testimonial Cards */
+        .testimonial-card {
+            background: rgba(18, 18, 24, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 245, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .testimonial-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* Futuristic profile ring + holo backdrop */
+        .profile-ring {
+            position: relative;
+            border-radius: 9999px;
+            box-shadow: 0 0 40px rgba(99,102,241,0.35), 0 0 80px rgba(139,92,246,0.18);
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+
+        .profile-ring::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 9999px;
+            background: conic-gradient(from 0deg, rgba(99,102,241,0.85), rgba(139,92,246,0.65), rgba(6,182,212,0.6), rgba(99,102,241,0.85));
+            filter: blur(12px);
+            opacity: 0.85;
+            mix-blend-mode: screen;
+            animation: spinSlow 6s linear infinite;
+            pointer-events: none;
+        }
+
+        .profile-ring::before {
+            content: '';
+            position: absolute;
+            left: -20%;
+            top: 50%;
+            width: 140%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+            transform: translateY(-50%);
+            animation: scan 2.2s linear infinite;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes spinSlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hero-holo {
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(18deg);
+            background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.25), transparent 30%), radial-gradient(circle at 70% 70%, rgba(6,182,212,0.18), transparent 35%);
+            filter: blur(36px);
+            z-index: 0;
+            border-radius: 22%;
+            opacity: 0.45;
+            animation: float 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        /* Grid overlay and scan lines for futuristic background */
+        .grid-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background-image: linear-gradient(0deg, rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 48px 48px;
+            opacity: 0.45;
+            transform: rotate(-6deg) scale(1.02);
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            transform: translateZ(0);
+        }
+
+        .scan-lines {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: linear-gradient(180deg, transparent 60%, rgba(255,255,255,0.035) 61%, rgba(255,255,255,0.02) 62%, transparent 63%);
+            background-size: 100% 80px;
+            opacity: 0.5;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            animation: scrollScan 6s linear infinite;
+        }
+
+        /* Vertical data streams passing through hero */
+        .data-streams {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background-image: linear-gradient(90deg, rgba(0,245,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,0,110,0.02) 1px, transparent 1px);
+            background-size: 80px 100%;
+            opacity: 0.08;
+            mix-blend-mode: screen;
+            pointer-events: none;
+            animation: driftStreams 12s linear infinite;
+        }
+
+        @keyframes driftStreams {
+            0% { background-position-x: 0; }
+            50% { background-position-x: 40px; }
+            100% { background-position-x: 0; }
+        }
+
+        @keyframes scrollScan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 80px; }
+        }
+
+        /* Starfield subtle depth */
+        .starfield {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.12) 1px, transparent 2px);
+            background-size: 8px 8px, 200px 200px;
+            opacity: 0.08;
+            filter: blur(0.8px);
+            pointer-events: none;
+        }
+
+        /* Vignette overlay to focus center */
+        .vignette {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.45) 100%);
+            pointer-events: none;
+            opacity: 0.55;
+            mix-blend-mode: multiply;
+        }
+
+        /* Parallax depth tiers */
+        .parallax-1, .parallax-2, .parallax-3 {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            transform: translateZ(0);
+        }
+
+        .parallax-1 { z-index: 0; opacity: 0.55; }
+        .parallax-2 { z-index: 1; opacity: 0.4; }
+        .parallax-3 { z-index: 2; opacity: 0.2; }
+
+        /* parallax layer content styles */
+        .parallax-1::after, .parallax-2::after, .parallax-3::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            left: -50%;
+            top: -50%;
+            background-repeat: no-repeat;
+            background-position: center;
+            transform-origin: center;
+            filter: blur(18px) saturate(160%);
+            pointer-events: none;
+        }
+
+        .parallax-1::after {
+            background-image: radial-gradient(circle at 30% 20%, rgba(0,245,255,0.12), transparent 10%), radial-gradient(circle at 80% 70%, rgba(189,0,255,0.08), transparent 15%);
+            animation: slowFloat1 16s linear infinite;
+        }
+
+        .parallax-2::after {
+            background-image: radial-gradient(circle at 15% 80%, rgba(140, 0, 255, 0.06), transparent 12%), radial-gradient(circle at 70% 30%, rgba(0,245,255,0.06), transparent 8%);
+            animation: slowFloat2 22s linear infinite;
+        }
+
+        .parallax-3::after {
+            background-image: radial-gradient(circle at 50% 20%, rgba(255,0,110,0.05), transparent 10%);
+            animation: slowFloat3 30s linear infinite;
+        }
+
+        @keyframes slowFloat1 { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes slowFloat2 { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
+        @keyframes slowFloat3 { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* floating holo-orbs */
+        .holo-orb { position: absolute; width: 10px; height: 10px; border-radius: 9999px; mix-blend-mode: screen; opacity: 0.9; filter: blur(1px); pointer-events: none; }
+        .holo-orb.c1 { background: rgba(0,245,255,0.9); left: 12%; top: 25%; animation: moveOrb1 7s ease-in-out infinite; }
+        .holo-orb.c2 { background: rgba(189,0,255,0.85); left: 88%; top: 20%; animation: moveOrb2 9s ease-in-out infinite; }
+        .holo-orb.c3 { background: rgba(255,0,110,0.75); left: 45%; top: 86%; animation: moveOrb3 11s ease-in-out infinite; }
+
+        @keyframes moveOrb1 { 0% { transform: translateY(0) translateX(0);} 50% { transform: translateY(-22px) translateX(8px);} 100% { transform: translateY(0) translateX(0);} }
+        @keyframes moveOrb2 { 0% { transform: translateY(0) translateX(0);} 50% { transform: translateY(18px) translateX(-12px);} 100% { transform: translateY(0) translateX(0);} }
+        @keyframes moveOrb3 { 0% { transform: translateY(0) translateX(0);} 50% { transform: translateY(-14px) translateX(6px);} 100% { transform: translateY(0) translateX(0);} }
+
+        /* Neon text glow */
+        .neon-heading {
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 2px 12px rgba(99,102,241,0.35), 0 6px 30px rgba(139,92,246,0.18);
+        }
+        .neon-heading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 120%;
+            height: 30%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+            opacity: 0.0;
+            mix-blend-mode: screen;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+        }
+        .neon-heading:hover::after { opacity: 1; }
+
+        .cursor-outline.cursor-active {
+            transform: scale(1.6);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(6,182,212,0.45), 0 0 40px rgba(139,92,246,0.18);
+            background: rgba(6,182,212,0.02);
+        }
+
+        /* Icon utilities (Feather icons will inherit color via currentColor) */
+        .icon { width: 1em; height: 1em; vertical-align: middle; }
+        .icon-lg { width: 2.25rem; height: 2.25rem; }
+        .icon-muted { color: rgba(255,255,255,0.65); }
+        .icon-accent { color: var(--primary); }
+        .icon-stroke-strong { stroke-width: 1.6px; }
+
+        /* Brand icons (used in Technology Stack) */
+        .brand-icon {
+            width: 3rem;
+            height: 3rem;
+            display: inline-block;
+            vertical-align: middle;
+            transition: transform 240ms ease, filter 240ms ease, opacity 240ms ease;
+            filter: drop-shadow(0 8px 18px rgba(0,0,0,0.45));
+            opacity: 0.98;
+        }
+        .brand-icon.small { width: 2.25rem; height: 2.25rem; }
+        .brand-icon.accent { filter: drop-shadow(0 8px 30px rgba(0,245,255,0.12)); }
+        .glass-hover:hover .brand-icon { transform: translateY(-6px) scale(1.05); filter: drop-shadow(0 18px 30px rgba(0,245,255,0.18)); }
+
+        /* Animated neon rocket for About section */
+        .rocket-3d { width: 52%; max-width: 220px; height: auto; animation: floatRocket 4s ease-in-out infinite; transition: transform 300ms ease; filter: drop-shadow(0 18px 40px rgba(0,245,255,0.12)); }
+        .rocket-3d:hover { transform: translateY(-8px) rotate(3deg); }
+        @keyframes floatRocket { 0% { transform: translateY(0) rotate(-2deg);} 50% { transform: translateY(-10px) rotate(2deg);} 100% { transform: translateY(0) rotate(-2deg);} }
+
+        /* Profile visual enhancements */
+        .profile-visual { position: relative; overflow: visible; }
+        .profile-visual::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 52%;
+            width: 220px;
+            height: 220px;
+            transform: translate(-50%, -50%);
+            border-radius: 9999px;
+            background: radial-gradient(circle at 40% 30%, rgba(0,245,255,0.06), transparent 25%), radial-gradient(circle at 70% 70%, rgba(189,0,255,0.04), transparent 35%);
+            filter: blur(18px);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.9;
+        }
+        .profile-visual svg { position: relative; z-index: 10; }
+        
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full glass z-50" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="text-2xl font-bold font-display neon-text">
+                    JHON REY
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-white/80 hover:text-cyan-400 transition-colors">Home</a>
+                    <a href="#about" class="nav-link text-white/80 hover:text-cyan-400 transition-colors">About</a>
+                    <a href="#experience" class="nav-link text-white/80 hover:text-cyan-400 transition-colors">Experience</a>
+                    <a href="#projects" class="nav-link text-white/80 hover:text-cyan-400 transition-colors">Projects</a>
+                    <a href="#skills" class="nav-link text-white/80 hover:text-cyan-400 transition-colors">Skills</a>
+                    <a href="#contact" class="nav-link text-white/80 hover:text-cyan-400 transition-colors">Contact</a>
+                </div>
+                <div class="hidden md:block">
+                    <a href="#contact" class="cyber-btn font-bold text-sm">
+                        <span>HIRE ME</span>
+                    </a>
+                </div>
+                <button id="mobileMenuBtn" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden glass border-t border-cyan-400/20">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#home" class="block py-2 text-white/80 hover:text-cyan-400 transition-colors">Home</a>
+                <a href="#about" class="block py-2 text-white/80 hover:text-cyan-400 transition-colors">About</a>
+                <a href="#experience" class="block py-2 text-white/80 hover:text-cyan-400 transition-colors">Experience</a>
+                <a href="#projects" class="block py-2 text-white/80 hover:text-cyan-400 transition-colors">Projects</a>
+                <a href="#skills" class="block py-2 text-white/80 hover:text-cyan-400 transition-colors">Skills</a>
+                <a href="#contact" class="block py-2 text-white/80 hover:text-cyan-400 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen pt-24 md:pt-32 flex items-center justify-center relative cyber-grid overflow-hidden">
+        <div class="parallax-1" id="parallax1"></div>
+        <div class="parallax-2" id="parallax2"></div>
+        <div class="parallax-3" id="parallax3"></div>
+        <div class="starfield"></div>
+        <div class="vignette"></div>
+        <div class="grid-overlay"></div>
+        <div class="data-streams"></div>
+        <div class="scan-lines"></div>
+        <div class="holo-orb c1"></div>
+        <div class="holo-orb c2"></div>
+        <div class="holo-orb c3"></div>
+        <div class="particles-bg" id="particlesBg"></div>
+        
+        <div class="text-center px-4 relative z-10 max-w-6xl mx-auto">
+            
+            <div class="mb-8 fade-in">
+                <div class="relative inline-block">
+                    <div class="hero-holo"></div>
+                    <div class="w-48 h-48 mx-auto mb-4 glass rounded-full flex items-center justify-center overflow-hidden profile-ring" style="margin-top: 24px;">
+                        <img src="profile.png" alt="Profile Picture" class="w-full h-full object-cover rounded-full" />
+                    </div>
+                </div>
+                </div>
+                <h1 class="text-6xl md:text-8xl font-bold font-display mb-8 fade-in neon-heading">JHON REY NARCISO</h1>
+            
+            <div class="text-2xl md:text-4xl mb-8 fade-in">
+                <span id="typingText" class="font-mono text-cyan-400"></span>
+                <span class="inline-block w-1 h-8 bg-cyan-400 ml-1 animate-pulse"></span>
+            </div>
+            
+            <p class="text-lg md:text-xl mb-12 text-white/70 max-w-3xl mx-auto fade-in">
+                Crafting next-generation digital experiences with cutting-edge technology and innovative design solutions
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12 fade-in">
+                <a href="#projects" class="cyber-btn" id="projectsBtn">
+                    <span>VIEW PROJECTS</span>
+                </a>
+                <a href="#contact" class="cyber-btn" id="contactBtn">
+                    <span>GET IN TOUCH</span>
+                </a>
+            </div>
+            
+            <div class="flex justify-center space-x-6 fade-in">
+                <a href="#" class="text-white/60 hover:text-cyan-400 transition-all hover:scale-125"><i data-feather="briefcase" class="icon icon-muted"></i></a>
+                <a href="#" class="text-white/60 hover:text-cyan-400 transition-all hover:scale-125"><i data-feather="github" class="icon icon-muted"></i></a>
+                <a href="#" class="text-white/60 hover:text-cyan-400 transition-all hover:scale-125"><i data-feather="twitter" class="icon icon-muted"></i></a>
+                <a href="#" class="text-white/60 hover:text-cyan-400 transition-all hover:scale-125"><i data-feather="mail" class="icon icon-muted"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 cyber-grid relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-bold font-display mb-6 fade-in neon-text">
+                    ABOUT ME
+                </h2>
+                <div class="w-32 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto fade-in"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="fade-in-left">
+                    <div class="relative">
+                        <div class="w-80 h-80 mx-auto glass rounded-3xl profile-visual flex items-center justify-center text-8xl border-2 border-cyan-400/30">
+                            <!-- Animated neon rocket (SVG) -->
+                            <svg class="rocket-3d" viewBox="0 0 200 200" role="img" aria-label="Floating rocket">
+                                <defs>
+                                    <linearGradient id="rg" x1="0" x2="1">
+                                        <stop offset="0%" stop-color="#ff6bb0" />
+                                        <stop offset="100%" stop-color="#00f5ff" />
+                                    </linearGradient>
+                                    <filter id="glow"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                                </defs>
+                                <g filter="url(#glow)">
+                                    <path d="M100 18 C116 18, 145 40, 145 70 C145 110, 100 160, 100 160 C100 160, 55 110, 55 70 C55 40, 84 18, 100 18 Z" fill="url(#rg)" />
+                                    <ellipse cx="100" cy="88" rx="22" ry="13" fill="#ffffff" opacity="0.12" />
+                                    <circle cx="100" cy="60" r="8" fill="#ffffff" />
+                                    <rect x="92" y="118" width="16" height="26" rx="8" fill="#ffd1a6" transform="rotate(8 100 131)"/>
+                                    <path d="M100 160 L88 180 L100 174 L112 180 Z" fill="#ff8b6b" opacity="0.96"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in-right space-y-8">
+                    <h3 class="text-4xl font-bold font-display text-cyan-400">My Journey</h3>
+                    <p class="text-white/80 text-lg leading-relaxed">
+                        Full-stack developer with 6+ years of experience in creating cutting-edge digital solutions. 
+                        I specialize in building scalable web applications and leading development teams to success.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center p-6 glass-hover rounded-2xl holo-card">
+                            <div class="text-4xl font-bold text-cyan-400 mb-2">50+</div>
+                            <div class="text-white/70">Projects</div>
+                        </div>
+                        <div class="text-center p-6 glass-hover rounded-2xl holo-card">
+                            <div class="text-4xl font-bold text-cyan-400 mb-2">6+</div>
+                            <div class="text-white/70">Years</div>
+                        </div>
+                        <div class="text-center p-6 glass-hover rounded-2xl holo-card">
+                            <div class="text-4xl font-bold text-cyan-400 mb-2">25+</div>
+                            <div class="text-white/70">Clients</div>
+                        </div>
+                        <div class="text-center p-6 glass-hover rounded-2xl holo-card">
+                            <div class="text-4xl font-bold text-cyan-400 mb-2">15+</div>
+                            <div class="text-white/70">Technologies</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-32 cyber-grid relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-bold font-display mb-6 fade-in neon-text">
+                    EXPERIENCE
+                </h2>
+                <div class="w-32 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto fade-in"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto relative pl-12">
+                <div class="timeline-line"></div>
+                
+                <div class="space-y-12">
+                    <div class="relative fade-in">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-hover p-8 rounded-2xl holo-card">
+                            <div class="flex flex-col md:flex-row md:justify-between mb-4">
+                                <h3 class="text-2xl font-bold text-cyan-400">ICT Junior High School — Calinan National High School</h3>
+                                <span class="text-purple-400 font-mono">2015 - 2019</span>
+                            </div>
+                            <h4 class="text-lg text-white/80 mb-4">ICT Junior High School</h4>
+                            <p class="text-white/70 mb-4">Studied core ICT subjects and participated in school tech clubs and projects.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative fade-in">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-hover p-8 rounded-2xl holo-card">
+                            <div class="flex flex-col md:flex-row md:justify-between mb-4">
+                                <h3 class="text-2xl font-bold text-cyan-400">ICT Senior High School — Calinan National High School</h3>
+                                <span class="text-purple-400 font-mono">2018 - 2020</span>
+                            </div>
+                            <h4 class="text-lg text-white/80 mb-4">ICT Senior High School</h4>
+                            <p class="text-white/70 mb-4">Focused on applied ICT skills, networking fundamentals, and hands-on system projects.</p>
+                        </div>
+                    </div>
+
+                    <div class="relative fade-in">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-hover p-8 rounded-2xl holo-card">
+                            <div class="flex flex-col md:flex-row md:justify-between mb-4">
+                                <h3 class="text-2xl font-bold text-cyan-400">5‑years BSIT — St. John Paul II College of Davao</h3>
+                                <span class="text-purple-400 font-mono">2021 - 2025</span>
+                            </div>
+                            <h4 class="text-lg text-white/80 mb-4">Bachelor of Science in Information Technology</h4>
+                            <p class="text-white/70 mb-4">Comprehensive IT curriculum with emphasis on software development, systems, and networking.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-32 cyber-grid relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-bold font-display mb-6 fade-in neon-text">
+                    PROJECTS
+                </h2>
+                <div class="w-32 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto fade-in"></div>
+            </div>
+            
+            <div class="flex justify-center mb-12 fade-in">
+                <div class="glass p-2 rounded-full flex flex-wrap gap-2">
+                    <button class="filter-btn active px-6 py-2 rounded-full font-mono text-sm" data-filter="all">ALL</button>
+                    <button class="filter-btn px-6 py-2 rounded-full font-mono text-sm" data-filter="web">WEB</button>
+                    <button class="filter-btn px-6 py-2 rounded-full font-mono text-sm" data-filter="mobile">MOBILE</button>
+                    <button class="filter-btn px-6 py-2 rounded-full font-mono text-sm" data-filter="design">DESIGN</button>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
+
+                <!-- ApointHub (matches project-item style) -->
+                <div class="project-item glass-hover rounded-2xl overflow-hidden holo-card fade-in" data-category="mobile">
+                    <div class="media relative overflow-hidden">
+                        <img src="images/app_ApointHub.jpg" alt="ApointHub app splash screen" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs font-mono text-cyan-400">APP</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold font-display text-cyan-400 mb-3">ApointHub</h3>
+                        <p class="text-white/70 mb-4 text-sm">Smart appointment system — mobile app UI & onboarding</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">Flutter</span>
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">UI</span>
+                        </div>
+                        <button class="cyber-btn w-full text-xs"><span>VIEW PROJECT</span></button>
+                    </div>
+                </div>
+
+                <!-- Memory Management Simulator -->
+                <div class="project-item glass-hover rounded-2xl overflow-hidden holo-card fade-in" data-category="mobile">
+                    <div class="media relative overflow-hidden">
+                        <img src="images/html_memory_management.jpg" alt="Memory Management Simulator UI" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs font-mono text-cyan-400">APP</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold font-display text-cyan-400 mb-3">Memory Management Simulator</h3>
+                        <p class="text-white/70 mb-4 text-sm">Visual simulator for FIFO vs LRU — educational app UI</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">Android</span>
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">Simulation</span>
+                        </div>
+                        <button class="cyber-btn w-full text-xs"><span>VIEW PROJECT</span></button>
+                    </div>
+                </div>
+
+                <!-- Java Bank Management -->
+                <div class="project-item glass-hover rounded-2xl overflow-hidden holo-card fade-in" data-category="web">
+                    <div class="media relative overflow-hidden">
+                        <img src="images/java_bankcrupt.jpg" alt="Bank Management System Java UI" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs font-mono text-cyan-400">DESKTOP</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold font-display text-cyan-400 mb-3">BankCrup(t) — Bank Management</h3>
+                        <p class="text-white/70 mb-4 text-sm">Java Swing desktop system for account management</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">Java</span>
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">Swing</span>
+                        </div>
+                        <button class="cyber-btn w-full text-xs"><span>VIEW PROJECT</span></button>
+                    </div>
+                </div>
+
+                <!-- Product Dashboard -->
+                <div class="project-item glass-hover rounded-2xl overflow-hidden holo-card fade-in" data-category="web">
+                    <div class="media relative overflow-hidden">
+                        <img src="images/web_productcategory.jpg" alt="Product Dashboard UI" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs font-mono text-cyan-400">WEB</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold font-display text-cyan-400 mb-3">Product Dashboard</h3>
+                        <p class="text-white/70 mb-4 text-sm">Admin dashboard for product categories and inventory</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">Vue.js</span>
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">UI</span>
+                        </div>
+                        <button class="cyber-btn w-full text-xs"><span>VIEW PROJECT</span></button>
+                    </div>
+                </div>
+                <div class="project-item glass-hover rounded-2xl overflow-hidden holo-card fade-in" data-category="web">
+                    <div class="h-64 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center relative">
+                        <i data-feather="shopping-bag" class="icon-lg icon-accent"></i>
+                        <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs font-mono text-cyan-400">
+                            LIVE
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold font-display text-cyan-400 mb-3">E-Commerce Platform</h3>
+                        <p class="text-white/70 mb-4 text-sm">
+                            Full-stack solution with payment integration and analytics
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">React</span>
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">Node.js</span>
+                        </div>
+                        <button class="cyber-btn w-full text-xs">
+                            <span>VIEW PROJECT</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="project-item glass-hover rounded-2xl overflow-hidden holo-card fade-in" data-category="mobile">
+                    <div class="h-64 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center relative">
+                        <i data-feather="smartphone" class="icon-lg icon-accent"></i>
+                        <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs font-mono text-cyan-400">
+                            APP
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold font-display text-cyan-400 mb-3">Fitness Tracker</h3>
+                        <p class="text-white/70 mb-4 text-sm">
+                            Cross-platform mobile app with social features
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">React Native</span>
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">Firebase</span>
+                        </div>
+                        <button class="cyber-btn w-full text-xs">
+                            <span>VIEW PROJECT</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="project-item glass-hover rounded-2xl overflow-hidden holo-card fade-in" data-category="web">
+                    <div class="h-64 bg-gradient-to-br from-green-500/20 to-cyan-500/20 flex items-center justify-center relative">
+                        <i data-feather="bar-chart" class="icon-lg icon-accent"></i>
+                        <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs font-mono text-cyan-400">
+                            LIVE
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold font-display text-cyan-400 mb-3">Analytics Dashboard</h3>
+                        <p class="text-white/70 mb-4 text-sm">
+                            Real-time analytics with interactive charts
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">Vue.js</span>
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">D3.js</span>
+                        </div>
+                        <button class="cyber-btn w-full text-xs">
+                            <span>VIEW PROJECT</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="project-item glass-hover rounded-2xl overflow-hidden holo-card fade-in" data-category="design">
+                    <div class="h-64 bg-gradient-to-br from-pink-500/20 to-orange-500/20 flex items-center justify-center relative">
+                        <i data-feather="image" class="icon-lg icon-accent"></i>
+                        <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs font-mono text-cyan-400">
+                            DESIGN
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold font-display text-cyan-400 mb-3">Brand Identity</h3>
+                        <p class="text-white/70 mb-4 text-sm">
+                            Complete brand system for fintech startup
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">Figma</span>
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">Adobe CC</span>
+                        </div>
+                        <button class="cyber-btn w-full text-xs">
+                            <span>VIEW PROJECT</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="project-item glass-hover rounded-2xl overflow-hidden holo-card fade-in" data-category="web">
+                    <div class="h-64 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center relative">
+                        <i data-feather="cpu" class="icon-lg icon-accent"></i>
+                        <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs font-mono text-cyan-400">
+                            AI
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold font-display text-cyan-400 mb-3">AI Chat Assistant</h3>
+                        <p class="text-white/70 mb-4 text-sm">
+                            Intelligent chatbot with NLP capabilities
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">Next.js</span>
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">OpenAI</span>
+                        </div>
+                        <button class="cyber-btn w-full text-xs">
+                            <span>VIEW PROJECT</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="project-item glass-hover rounded-2xl overflow-hidden holo-card fade-in" data-category="mobile">
+                    <div class="h-64 bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center relative">
+                        <i data-feather="music" class="icon-lg icon-accent"></i>
+                        <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs font-mono text-cyan-400">
+                            APP
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold font-display text-cyan-400 mb-3">Music Streaming</h3>
+                        <p class="text-white/70 mb-4 text-sm">
+                            Feature-rich music app with offline playback
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">Flutter</span>
+                            <span class="px-2 py-1 glass rounded-full text-cyan-400 text-xs">Firebase</span>
+                        </div>
+                        <button class="cyber-btn w-full text-xs">
+                            <span>VIEW PROJECT</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-32 cyber-grid relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-bold font-display mb-6 fade-in neon-text">
+                    SKILLS
+                </h2>
+                <div class="w-32 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto fade-in"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="fade-in-left">
+                    <h3 class="text-3xl font-bold font-display text-cyan-400 mb-8">Technical Expertise</h3>
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="text-white font-mono">React / Next.js</span>
+                                <span class="text-cyan-400 font-mono">7%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 0%" data-width="7%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="text-white font-mono">Node.js / Express</span>
+                                <span class="text-cyan-400 font-mono">9%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 0%" data-width="9%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="text-white font-mono">Python / Django</span>
+                                <span class="text-cyan-400 font-mono">11%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 0%" data-width="11%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="text-white font-mono">Database Design</span>
+                                <span class="text-cyan-400 font-mono">38%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 0%" data-width="38%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="text-white font-mono">Cloud & DevOps</span>
+                                <span class="text-cyan-400 font-mono">24%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 0%" data-width="24%"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="text-white font-mono">UI/UX Design</span>
+                                <span class="text-cyan-400 font-mono">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 0%" data-width="80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in-right">
+                    <h3 class="text-3xl font-bold font-display text-cyan-400 mb-8">Technology Stack</h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="glass-hover p-6 rounded-2xl text-center holo-card">
+                            <div class="mb-3">
+                                <img src="https://api.iconify.design/simple-icons:react.svg?color=%2300f5ff" alt="React" class="brand-icon accent" />
+                            </div>
+                            <div class="font-bold text-white text-sm">React</div>
+                        </div>
+                        <div class="glass-hover p-6 rounded-2xl text-center holo-card">
+                            <div class="mb-3">
+                                <img src="https://api.iconify.design/simple-icons:nodedotjs.svg?color=%2300f5ff" alt="Node.js" class="brand-icon" />
+                            </div>
+                            <div class="font-bold text-white text-sm">Node.js</div>
+                        </div>
+                        <div class="glass-hover p-6 rounded-2xl text-center holo-card">
+                            <div class="mb-3">
+                                <img src="https://api.iconify.design/simple-icons:python.svg?color=%2300f5ff" alt="Python" class="brand-icon" />
+                            </div>
+                            <div class="font-bold text-white text-sm">Python</div>
+                        </div>
+                        <div class="glass-hover p-6 rounded-2xl text-center holo-card">
+                            <div class="mb-3">
+                                <img src="https://api.iconify.design/simple-icons:mongodb.svg?color=%2300f5ff" alt="MongoDB" class="brand-icon" />
+                            </div>
+                            <div class="font-bold text-white text-sm">MongoDB</div>
+                        </div>
+                        <div class="glass-hover p-6 rounded-2xl text-center holo-card">
+                            <div class="mb-3">
+                                <img src="https://api.iconify.design/simple-icons:amazonaws.svg?color=%2300f5ff" alt="AWS" class="brand-icon" />
+                            </div>
+                            <div class="font-bold text-white text-sm">AWS</div>
+                        </div>
+                        <div class="glass-hover p-6 rounded-2xl text-center holo-card">
+                            <div class="mb-3">
+                                <img src="https://api.iconify.design/simple-icons:git.svg?color=%2300f5ff" alt="Git" class="brand-icon" />
+                            </div>
+                            <div class="font-bold text-white text-sm">Git</div>
+                        </div>
+                        <div class="glass-hover p-6 rounded-2xl text-center holo-card">
+                            <div class="mb-3">
+                                <img src="https://api.iconify.design/simple-icons:docker.svg?color=%2300f5ff" alt="Docker" class="brand-icon" />
+                            </div>
+                            <div class="font-bold text-white text-sm">Docker</div>
+                        </div>
+                        <div class="glass-hover p-6 rounded-2xl text-center holo-card">
+                            <div class="mb-3">
+                                <img src="https://api.iconify.design/simple-icons:react.svg?color=%2300f5ff" alt="React Native" class="brand-icon" />
+                            </div>
+                            <div class="font-bold text-white text-sm">React Native</div>
+                        </div>
+                        <div class="glass-hover p-6 rounded-2xl text-center holo-card">
+                            <div class="mb-3">
+                                <img src="https://api.iconify.design/simple-icons:figma.svg?color=%2300f5ff" alt="Figma" class="brand-icon" />
+                            </div>
+                            <div class="font-bold text-white text-sm">Figma</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 cyber-grid relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-bold font-display mb-6 fade-in neon-text">
+                    CONTACT
+                </h2>
+                <div class="w-32 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto fade-in"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="fade-in-left">
+                    <h3 class="text-3xl font-bold font-display text-cyan-400 mb-8">Get In Touch</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center glass-hover p-4 rounded-2xl">
+                            <div class="text-4xl mr-4"><i data-feather="mail" class="icon icon-lg icon-muted"></i></div>
+                            <div>
+                                <div class="font-bold text-white">Email</div>
+                                <div class="text-white/70">johnreynarciso@sjp2cd.edu.ph</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center glass-hover p-4 rounded-2xl">
+                            <div class="text-4xl mr-4"><i data-feather="smartphone" class="icon icon-lg icon-muted"></i></div>
+                            <div>
+                                <div class="font-bold text-white">Phone</div>
+                                <div class="text-white/70">+63 919-3263-647</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center glass-hover p-4 rounded-2xl">
+                            <div class="text-4xl mr-4"><i data-feather="map-pin" class="icon icon-lg icon-muted"></i></div>
+                            <div>
+                                <div class="font-bold text-white">Location</div>
+                                <div class="text-white/70">
+                                    <a href="https://www.google.com/maps/search/?api=1&query=St+John+Paul+II+College+of+Davao" target="_blank" rel="noopener noreferrer" aria-label="Open map to St. John Paul II College of Davao" class="hover:text-cyan-400 transition-colors">St. John Paul II College of Davao, Davao, Philippines</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold text-white mb-4 text-xl">Follow Me</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Narciso15" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="glass-hover p-4 rounded-2xl hover:text-cyan-400 transition-colors">
+                                <img src="https://api.iconify.design/simple-icons:github.svg?color=%2300f5ff" alt="GitHub" class="icon-lg" style="width:1.25rem;height:1.25rem;" />
+                            </a>
+                            <a href="https://t.me/hiro_gryner" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="glass-hover p-4 rounded-2xl hover:text-cyan-400 transition-colors">
+                                <img src="https://api.iconify.design/simple-icons:telegram.svg?color=%2300f5ff" alt="Telegram" class="icon-lg" style="width:1.25rem;height:1.25rem;" />
+                            </a>
+                            <a href="https://web.facebook.com/johnrey.narciso.923" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="glass-hover p-4 rounded-2xl hover:text-cyan-400 transition-colors">
+                                <img src="https://api.iconify.design/simple-icons:facebook.svg?color=%2300f5ff" alt="Facebook" class="icon-lg" style="width:1.25rem;height:1.25rem;" />
+                            </a>
+                            <a href="mailto:johnreynarciso@sjp2cd.edu.ph" aria-label="Email" class="glass-hover p-4 rounded-2xl hover:text-cyan-400 transition-colors">
+                                <i data-feather="mail" class="icon icon-muted"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in-right">
+                    <div class="glass p-8 rounded-2xl">
+                        <h3 class="text-3xl font-bold font-display text-cyan-400 mb-6">Send Message</h3>
+                        
+                        
+                        <form id="contactForm" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <input id="firstName" name="firstName" type="text" placeholder="First Name" class="cyber-input w-full px-4 py-3 rounded-xl" required>
+                                <input id="lastName" name="lastName" type="text" placeholder="Last Name" class="cyber-input w-full px-4 py-3 rounded-xl" required>
+                            </div>
+                            <input id="contactEmail" name="contactEmail" type="email" placeholder="Email Address" class="cyber-input w-full px-4 py-3 rounded-xl" required>
+                            <select id="projectType" name="projectType" class="cyber-input w-full px-4 py-3 rounded-xl" required>
+                                <option value="">Project Type</option>
+                                <option value="Web Application">Web Application</option>
+                                <option value="Mobile App">Mobile App</option>
+                                <option value="UI/UX Design">UI/UX Design</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <textarea id="projectDetails" name="projectDetails" placeholder="Project Details" rows="5" class="cyber-input w-full px-4 py-3 rounded-xl resize-none" required></textarea>
+                            <button type="submit" class="cyber-btn w-full">
+                                <span id="submitText">SEND MESSAGE</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-cyan-400/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <div class="text-3xl font-bold font-display neon-text mb-4">
+                        JHON REY NARCISO
+                    </div>
+                    <p class="text-white/70 mb-4 max-w-md">
+                        Full-stack developer creating next-generation digital experiences
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/Narciso15" target="_blank" rel="noopener noreferrer" class="glass-hover p-3 rounded-xl text-xl hover:text-cyan-400 transition-colors" aria-label="GitHub">
+                            <i data-feather="github" class="icon icon-muted"></i>
+                        </a>
+                        <a href="https://web.facebook.com/johnrey.narciso.923" target="_blank" rel="noopener noreferrer" class="glass-hover p-3 rounded-xl text-xl hover:text-cyan-400 transition-colors" aria-label="Facebook">
+                            <img src="https://api.iconify.design/simple-icons:facebook.svg?color=%2300f5ff" alt="Facebook" class="brand-icon small" style="width:1.25rem;height:1.25rem;vertical-align:middle;" />
+                        </a>
+                        <a href="https://t.me/hiro_gryner" target="_blank" rel="noopener noreferrer" class="glass-hover p-3 rounded-xl text-xl hover:text-cyan-400 transition-colors" aria-label="Telegram">
+                            <img src="https://api.iconify.design/simple-icons:telegram.svg?color=%2300f5ff" alt="Telegram" class="brand-icon small" style="width:1.25rem;height:1.25rem;vertical-align:middle;" />
+                        </a>
+                        <a href="mailto:johnreynarciso@sjp2cd.edu.ph" class="glass-hover p-3 rounded-xl text-xl hover:text-cyan-400 transition-colors" aria-label="Email">
+                            <i data-feather="mail" class="icon icon-muted"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-400">Quick Links</h4>
+                    <div class="space-y-2">
+                        <a href="#home" class="block text-white/70 hover:text-cyan-400 transition-colors">Home</a>
+                        <a href="#about" class="block text-white/70 hover:text-cyan-400 transition-colors">About</a>
+                        <a href="#projects" class="block text-white/70 hover:text-cyan-400 transition-colors">Projects</a>
+                        <a href="#contact" class="block text-white/70 hover:text-cyan-400 transition-colors">Contact</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4 text-cyan-400">Services</h4>
+                    <div class="space-y-2 text-white/70">
+                        <div>Web Development</div>
+                        <div>Mobile Apps</div>
+                        <div>UI/UX Design</div>
+                        <div>Consulting</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-cyan-400/20 pt-8 text-center">
+                <p class="text-white/60 font-mono">
+                    &copy; 2024 Jhon Rey Narciso.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Typing Animation
+        const typingText = document.getElementById('typingText');
+        const phrases = [
+            'Full Stack Developer 5years going 6 experience in college',
+            'UI/UX Designer',
+            'Problem Solver',
+            'Tech Enthusiast'
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeWriter() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+            }
+
+            setTimeout(typeWriter, isDeleting ? 50 : 100);
+        }
+
+        setTimeout(typeWriter, 1000);
+
+        // Custom Cursor
+        const cursorDot = document.getElementById('cursorDot');
+        const cursorOutline = document.getElementById('cursorOutline');
+        
+        if (window.innerWidth > 768) {
+            let mouseX = 0, mouseY = 0;
+            let dotX = 0, dotY = 0;
+            let outlineX = 0, outlineY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            function animateCursor() {
+                dotX += (mouseX - dotX) * 0.8;
+                dotY += (mouseY - dotY) * 0.8;
+                cursorDot.style.left = dotX + 'px';
+                cursorDot.style.top = dotY + 'px';
+
+                outlineX += (mouseX - outlineX) * 0.15;
+                outlineY += (mouseY - outlineY) * 0.15;
+                cursorOutline.style.left = outlineX + 'px';
+                cursorOutline.style.top = outlineY + 'px';
+
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+        }
+
+        // Interactive hover for cursor outline (futuristic effect)
+        const interactiveSelectors = 'a, button, .cyber-btn, .magnetic-btn, .nav-link, .glass-hover';
+        document.querySelectorAll(interactiveSelectors).forEach((el) => {
+            el.addEventListener('mouseenter', () => { cursorOutline.classList.add('cursor-active'); cursorDot.classList.add('cursor-active'); });
+            el.addEventListener('mouseleave', () => { cursorOutline.classList.remove('cursor-active'); cursorDot.classList.remove('cursor-active'); });
+            el.addEventListener('focus', () => { cursorOutline.classList.add('cursor-active'); cursorDot.classList.add('cursor-active'); });
+            el.addEventListener('blur', () => { cursorOutline.classList.remove('cursor-active'); cursorDot.classList.remove('cursor-active'); });
+        });
+
+        // Slight scale on profile hover for tactile feeling
+        document.querySelectorAll('.profile-ring').forEach((profile) => {
+            profile.addEventListener('mouseenter', () => profile.style.transform = 'scale(1.06)');
+            profile.addEventListener('mouseleave', () => profile.style.transform = 'scale(1)');
+        });
+
+        // Parallax effect on mouse move + scroll for hero background
+        const parallax1 = document.getElementById('parallax1');
+        const parallax2 = document.getElementById('parallax2');
+        const parallax3 = document.getElementById('parallax3');
+        let mouseRelX = 0, mouseRelY = 0, scrollPct = 0;
+
+        function updateParallaxTransforms() {
+            const px1X = mouseRelX * 6;
+            const px1Y = mouseRelY * 6 + scrollPct * 10;
+            const px2X = mouseRelX * 12;
+            const px2Y = mouseRelY * 12 + scrollPct * 6;
+            const px3X = mouseRelX * 20;
+            const px3Y = mouseRelY * 20 + scrollPct * 3;
+            if (parallax1) parallax1.style.transform = `translate(${px1X}px, ${px1Y}px)`;
+            if (parallax2) parallax2.style.transform = `translate(${px2X}px, ${px2Y}px)`;
+            if (parallax3) parallax3.style.transform = `translate(${px3X}px, ${px3Y}px)`;
+            document.querySelectorAll('.profile-ring').forEach((profile) => {
+                profile.style.transform = `scale(1.02) rotate(${mouseRelX * 6}deg)`;
+            });
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            mouseRelX = (e.clientX / window.innerWidth) - 0.5;
+            mouseRelY = (e.clientY / window.innerHeight) - 0.5;
+            updateParallaxTransforms();
+        });
+
+        // Scroll parallax: subtle vertical move for layers
+        let latestScroll = 0, ticking = false;
+        function onScroll() {
+            latestScroll = window.scrollY;
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const max = document.body.scrollHeight - window.innerHeight;
+                    scrollPct = Math.min(1, latestScroll / Math.max(1, max));
+                    updateParallaxTransforms();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        // Idle animation for CTA buttons
+        const projectsBtn = document.getElementById('projectsBtn');
+        const contactBtn = document.getElementById('contactBtn');
+        if (projectsBtn) projectsBtn.classList.add('pulse');
+        if (contactBtn) contactBtn.classList.add('pulse');
+
+        // Add ripple effect to cyber-btn on click
+        document.querySelectorAll('.cyber-btn').forEach((btn) => {
+            btn.addEventListener('click', function (e) {
+                const rect = this.getBoundingClientRect();
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.left = (e.clientX - rect.left) + 'px';
+                ripple.style.top = (e.clientY - rect.top) + 'px';
+                ripple.style.width = ripple.style.height = '8px';
+                ripple.style.background = 'rgba(255,255,255,0.18)';
+                ripple.style.borderRadius = '9999px';
+                ripple.style.transform = 'translate(-50%, -50%) scale(1)';
+                ripple.style.opacity = '0.9';
+                ripple.style.pointerEvents = 'none';
+                ripple.style.transition = 'all 600ms cubic-bezier(0.22, 1, 0.36, 1)';
+                this.appendChild(ripple);
+                setTimeout(() => { ripple.style.transform = 'translate(-50%, -50%) scale(30)'; ripple.style.opacity = '0'; }, 10);
+                setTimeout(() => { ripple.remove(); }, 700);
+            });
+        });
+
+        // Scroll Progress
+        const scrollProgress = document.getElementById('scrollProgress');
+        
+        function updateScrollProgress() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = scrollTop / docHeight;
+            scrollProgress.style.transform = `scaleX(${scrollPercent})`;
+        }
+
+        window.addEventListener('scroll', updateScrollProgress);
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Skill Bars Animation
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-fill');
+                    skillBars.forEach((bar, index) => {
+                        const width = bar.getAttribute('data-width');
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, index * 200);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+            skillObserver.observe(skillsSection);
+        }
+
+        // Project Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                projectItems.forEach((item, index) => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        setTimeout(() => {
+                            item.style.display = 'block';
+                            item.style.opacity = '1';
+                        }, index * 50);
+                    } else {
+                        item.style.opacity = '0';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Form Submission — open visitor's mail client using mailto with prefilled subject/body
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const submitText = document.getElementById('submitText');
+            const originalText = submitText.textContent;
+
+            submitText.innerHTML = '<span class="loading"></span> OPENING MAIL APP...';
+
+            const first = document.getElementById('firstName').value.trim();
+            const last = document.getElementById('lastName').value.trim();
+            const fromEmail = document.getElementById('contactEmail').value.trim();
+            const projectType = document.getElementById('projectType').value || 'General Inquiry';
+            const details = document.getElementById('projectDetails').value.trim();
+
+            const subject = encodeURIComponent(`Portfolio Inquiry: ${projectType} — ${first} ${last}`);
+            let body = `Name: ${first} ${last}\nEmail: ${fromEmail}\nProject Type: ${projectType}\n\nMessage:\n${details}`;
+            body = encodeURIComponent(body);
+
+            const mailto = `mailto:johnreynarciso@sjp2cd.edu.ph?subject=${subject}&body=${body}`;
+
+            // Open user's mail client
+            window.location.href = mailto;
+
+            // Reset button & form after a short delay (user's mail client handles sending)
+            setTimeout(() => {
+                submitText.textContent = originalText;
+                this.reset();
+            }, 800);
+        });
+
+        // Particle System
+        const particlesBg = document.getElementById('particlesBg');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particle.style.animationDuration = (8 + Math.random() * 4) + 's';
+            particlesBg.appendChild(particle);
+        }
+
+        // Navbar Background on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 10, 15, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(18, 18, 24, 0.6)';
+            }
+        });
+    </script>
+
+    <!-- Feather icons CDN -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>document.addEventListener('DOMContentLoaded', function(){ if(window.feather) feather.replace({ 'stroke-width': 1.6 }) })</script>
+</body>
+</html>
